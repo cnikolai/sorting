@@ -42,6 +42,7 @@ public class MergeSort {
           System.arraycopy(data, rightIndex, merged, mergedIndex, end - rightIndex);
         }
         System.arraycopy(merged, 0, data, start, merged.length);
+        //only touching their piece of the array.
       }
    }
 }
