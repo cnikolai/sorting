@@ -1,5 +1,6 @@
 package edu.cnm.deepdive;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -26,6 +27,11 @@ public class SearchTest {
     System.out.printf("Linear Search: count = %d, time = %dms%n", count, finish-start);
 
     start = System.currentTimeMillis();
+    //Arrays.sort(haystack);
+    finish = System.currentTimeMillis();
+    System.out.printf("Arrays.sort: time = %dms%n", finish-start);
+
+    start = System.currentTimeMillis();
     QuickSort.sort(haystack);
     finish = System.currentTimeMillis();
     System.out.printf("QuickSort: time = %dms%n", finish-start);
@@ -38,6 +44,14 @@ public class SearchTest {
         .count();
     finish = System.currentTimeMillis();
     System.out.printf("BinarySearch: count = %d, time = %dms%n", count, finish-start);
-  }
 
+    start = System.currentTimeMillis();
+    count = (int) IntStream
+        .of(needles)
+        .map((needle) -> Arrays.binarySearch(haystack, needle))
+        .filter((position) -> position >=0 )//if item is true, keep on stream, otherwise, take off stream
+        .count();
+    finish = System.currentTimeMillis();
+    System.out.printf("Arrays.BinarySearch: count = %d, time = %dms%n", count, finish-start);
+  }
 }
